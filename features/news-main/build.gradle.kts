@@ -1,28 +1,19 @@
-plugins {
-    alias(libs.plugins.androidApplication)
+    plugins {
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
 }
 
 android {
-    namespace = "com.example.newssearchapp2"
+    namespace = "com.example.news_main"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.newssearchapp2"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-
-        buildConfigField("String", "NEWS_API_BASE_URL", "\"5f6154e001fb47059c6b06c991b98907\"" )
-        buildConfigField("String", "NEWS_API_KEY", "\"https://newsapi.org/v2/\"" )
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -42,16 +33,10 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
-        buildConfig = true
         compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
     }
 }
 
@@ -66,15 +51,14 @@ dependencies {
     implementation(libs.androidx.material3)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    implementation(libs.koltinx.coroutines.android)
+
+    implementation(project(":news-data"))
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
 
-    implementation(project(":news-data"))
-    implementation(project(":newsapi"))
-    implementation(project(":features:news-main"))
-    implementation(project(":database"))
-    implementation(project(":news-common"))
-
-    implementation (libs.okhttp.logging.interceptor)
 }

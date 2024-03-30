@@ -13,4 +13,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.koltinx.coroutines.core)
     implementation(libs.koltinx.serialization.json)
+    implementation(libs.androidx.annotation)
+    implementation(libs.retrofit.converter.kotlinx.serialization)
+    implementation (libs.retrofit.adapters.result)
+
+    implementation (libs.okhttp.logging.interceptor)
+    api(libs.okhttp)
 }

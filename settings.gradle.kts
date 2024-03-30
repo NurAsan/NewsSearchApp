@@ -22,3 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "NewsSearchApp2"
 include(":app")
 include(":newsapi")
+include(":database")
+include(":features:news-main")
+include(":news-data")
+include(":news-common")
